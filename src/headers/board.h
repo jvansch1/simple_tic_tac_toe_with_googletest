@@ -7,6 +7,7 @@ public:
     void setCell(int row, int col, char symbol);
     bool checkRowsWon();
     bool checkColumnsWon();
+    bool checkDiagonalsWon();
 private:
     void printBoardEdge();
 };
