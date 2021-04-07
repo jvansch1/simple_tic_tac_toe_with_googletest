@@ -1,3 +1,5 @@
+build/
 tests/googletest-build
 tests/googletest-download
 tests/googletest-src
+.vscode
