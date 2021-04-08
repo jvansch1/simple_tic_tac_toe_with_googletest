@@ -4,7 +4,7 @@ void Board::printBoard() {
     printBoardEdge();
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            if (board[i][j] == 0) {
+            if (board[i][j] != 'X' && board[i][j] != 'O') {
                 std::cout << "| |"; 
             } else {
                 std::cout << "|" << char(board[i][j]) << "|";
@@ -15,13 +15,19 @@ void Board::printBoard() {
     printBoardEdge();
 }
 
-void Board::setCell(int row, int col, char symbol) {
+bool Board::setCell(int row, int col, char symbol) {
     if (symbol != 'X' && symbol != 'O') {
         std::cout << "Not a valid Tic Tac Toe character. Please use X or O." << std::endl;
-        return;
+        return false;
+    }
+
+    if (board[row][col] == 'X' || board[row][col] == 'O') {
+        std::cout << "This place has already been used!" << std::endl;
+        return false;
     }
 
     board[row][col] = symbol;
+    return true;
 }
 
 void Board::printBoardEdge() {
@@ -72,5 +78,9 @@ bool Board::checkDiagonalsWon() {
         return true;
     }
     return false;
+}
+
+bool Board::checkGameWon() {
+    return checkDiagonalsWon() || checkRowsWon() || checkColumnsWon();
 }
 
